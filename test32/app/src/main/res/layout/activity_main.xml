@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5sp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="90sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="nombre" />
+
+        <EditText
+            android:id="@+id/edNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="60sp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="90sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="telefono" />
+
+        <EditText
+            android:id="@+id/edTelefono"
+            android:layout_width="wrap_content"
+            android:layout_height="60sp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAgregar"
+            style="@style/Base.Theme.Test3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:backgroundTint="@color/design_default_color_primary"
+            android:onClick="agregar"
+            android:text="agregar"
+            app:cornerRadius="10sp"
+            app:strokeColor="@color/design_default_color_primary_variant"
+            app:strokeWidth="2sp" />
+
+        <Button
+            android:id="@+id/button2"
+            style="@style/Base.Theme.Test3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:backgroundTint="@color/design_default_color_primary"
+            android:text="Button"
+            app:cornerRadius="10sp"
+            app:strokeColor="@color/design_default_color_primary_variant"
+            app:strokeWidth="2sp" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+</LinearLayout>
