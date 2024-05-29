@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.pruebascompose.dataclasses.Simple_task
 import com.example.pruebascompose.dataclasses.simple_routine
 import com.example.pruebascompose.mindlyui.new_recycler_test
+import com.example.pruebascompose.ui.Login
 import com.example.pruebascompose.ui.theme.PruebasComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -29,7 +30,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PruebasComposeTheme {
-                main_scafold()
+                Login().ejemplo_scafold()
             }
 
         }
@@ -42,7 +43,9 @@ class MainActivity : ComponentActivity() {
             LazyColumn(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top,
-                modifier = Modifier.fillMaxHeight().fillMaxWidth()){
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()){
                 item { 
                     Text(text = "alv", color = MaterialTheme.colorScheme.onBackground)
                 }

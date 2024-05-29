@@ -2,24 +2,32 @@ package com.example.pruebascompose.ui
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
+import android.widget.Space
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -29,8 +37,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -43,6 +56,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
@@ -123,12 +137,95 @@ class Login {
 
 
 
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun ejemplo_scafold(){
 
+
+            var presses by remember { mutableIntStateOf(0) }
+
+            Scaffold(
+                //attr of scaffold
+
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth(),
+                topBar = {
+                    TopAppBar(
+                        colors = topAppBarColors(
+                            containerColor = MaterialTheme.colorScheme.primaryContainer,
+                            titleContentColor = MaterialTheme.colorScheme.primary,
+                        ),
+                        title = {
+                            Text("Top app bar")
+                        },
+                        scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+                    )
+
+                },
+                bottomBar = {
+                    BottomAppBar(
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        contentColor = MaterialTheme.colorScheme.primary,
+                    ) {
+                        Text(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            textAlign = TextAlign.Center,
+                            text = "Bottom app bar",
+                        )
+                    }
+                },
+                floatingActionButton = {
+                    FloatingActionButton(onClick = { presses++ }) {
+                        Icon(Icons.Default.Add, contentDescription = "Add")
+                    }
+                }
+            ) { innerPadding ->
+                LazyColumn(
+                    modifier = Modifier
+                        .padding(innerPadding)
+                        .fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+
+                ) {
+                    item{
+                        LazyRow {
+                            for (i in 0..5){
+                                item{
+                                    ElevatedButton(
+                                        onClick = { /*TODO*/ },
+                                        modifier = Modifier.
+                                    ) {
+                                        Text(text = "boton")
+                                    }
+                                    Spacer(modifier = Modifier.size(10.dp))
+                                }
+                            }
+                        }
+                        LaunchedEffect(Unit) {
+                            autoScroll(lazyListState)
+                        }
+                    }
+                    for (i in 1..100) {
+                        item {
+                            Text(text = i.toString())
+                        }
+                    }
+
+
+
+                }
+            }
+
+    }
 
 
     @Preview
     @Composable
     fun preview_login(){
-        scafold()
+        ejemplo_scafold()
     }
-}
+
+
+    }
