@@ -23,6 +23,7 @@ import com.example.pruebascompose.dataclasses.Simple_task
 import com.example.pruebascompose.dataclasses.simple_routine
 import com.example.pruebascompose.mindlyui.new_recycler_test
 import com.example.pruebascompose.ui.Login
+import com.example.pruebascompose.ui.test2
 import com.example.pruebascompose.ui.theme.PruebasComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PruebasComposeTheme {
-                Login().ejemplo_scafold()
+                test2().prueba2()
             }
 
         }
