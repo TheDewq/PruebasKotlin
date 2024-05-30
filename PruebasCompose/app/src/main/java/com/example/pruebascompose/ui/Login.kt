@@ -20,7 +20,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.BottomAppBar
@@ -46,6 +48,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -63,6 +66,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pruebascompose.R
 import com.example.pruebascompose.ui.theme.colors
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class Login {
     val backgroundGradient:List<Color> = listOf(colors.convert("#00b4fc"), colors.convert("#005bc5"), colors.convert("#001449"))
@@ -190,22 +196,8 @@ class Login {
 
                 ) {
                     item{
-                        LazyRow {
-                            for (i in 0..5){
-                                item{
-                                    ElevatedButton(
-                                        onClick = { /*TODO*/ },
-                                        modifier = Modifier.
-                                    ) {
-                                        Text(text = "boton")
-                                    }
-                                    Spacer(modifier = Modifier.size(10.dp))
-                                }
-                            }
-                        }
-                        LaunchedEffect(Unit) {
-                            autoScroll(lazyListState)
-                        }
+                        AutoScrollingLazyRow()
+
                     }
                     for (i in 1..100) {
                         item {
@@ -218,6 +210,41 @@ class Login {
                 }
             }
 
+    }
+
+    @Composable
+    fun AutoScrollingLazyRow() {
+        val lazyListState = rememberLazyListState()
+        val coroutineScope = rememberCoroutineScope()
+
+        LazyRow(state = lazyListState) {
+            items(100) { index ->
+                ElevatedButton(
+                    onClick = { /* TODO: Acción al hacer clic */ },
+                    modifier = Modifier
+                ) {
+                    Text(text = "Botón $index")
+                }
+                Spacer(modifier = Modifier.size(10.dp))
+            }
+        }
+
+        LaunchedEffect(Unit) {
+            autoScroll(lazyListState, coroutineScope)
+        }
+    }
+
+    fun autoScroll(lazyListState: LazyListState, coroutineScope: CoroutineScope) {
+        coroutineScope.launch {
+            while (true) {
+                val itemCount = lazyListState.layoutInfo.totalItemsCount
+                var currentItemIndex = lazyListState.firstVisibleItemIndex
+                val nextItemIndex = if (currentItemIndex + 1 >= itemCount) currentItemIndex = 0 else currentItemIndex + 1
+
+                lazyListState.animateScrollToItem(nextItemIndex as Int)
+                delay(500)  // Ajusta el retraso según lo necesites
+            }
+        }
     }
 
 

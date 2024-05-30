@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.androidx.material3)
 
     implementation("androidx.navigation:navigation-compose:2.4.0-alpha06")
+    implementation("androidx.graphics:graphics-shapes:1.0.0-alpha05")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
