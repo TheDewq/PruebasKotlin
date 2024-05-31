@@ -62,7 +62,8 @@ dependencies {
 
     implementation("androidx.navigation:navigation-compose:2.4.0-alpha06")
     implementation("androidx.graphics:graphics-shapes:1.0.0-alpha05")
-
+    implementation("me.nikhilchaudhari:composeNeumorphism:1.0.0-alpha02")
+    implementation("io.github.sridhar-sp:neumorphic:0.0.6")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
